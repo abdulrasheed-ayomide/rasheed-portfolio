@@ -3,7 +3,7 @@ import '../styles/Stats.css'
 const stats = [
   { t: 10, suffix: '+', label: 'Completed Projects' },
   { t: 10, suffix: '+', label: 'Technologies Used' },
-  { t: 50, suffix: '+', label: 'GitHub Commits' },
+  { t: 60, suffix: '+', label: 'GitHub Commits' },
   { t: 100, suffix: '%', label: 'Project Dedication' },
 ]
 
