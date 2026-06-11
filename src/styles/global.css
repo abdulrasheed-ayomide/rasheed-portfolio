@@ -1,0 +1,143 @@
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════ */
+:root {
+  --bg: #07090f;
+  --bg2: #0c0f1a;
+  --bg3: #111422;
+  --card: rgba(15, 18, 28, 0.9);
+  --border: rgba(255, 255, 255, 0.06);
+  --border2: rgba(255, 255, 255, 0.12);
+  --text: #eceef5;
+  --muted: #6b7088;
+  --soft: #9ea3b8;
+  --accent: #5cffe6;
+  --accent2: #4d8eff;
+  --accent3: #b06cff;
+  --glow: rgba(92, 255, 230, 0.12);
+  --font-head: 'Outfit', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --nav: 68px;
+  --r: 14px;
+  --r2: 22px;
+}
+
+[data-theme="light"] {
+  --bg: #ecf3f9;
+  --bg2: #f5f7fb;
+  --bg3: #e5e9f1;
+  --card: rgba(255, 255, 255, 0.92);
+  --border: rgba(15, 23, 44, 0.08);
+  --border2: rgba(15, 23, 44, 0.12);
+  --text: #151b25;
+  --muted: #5f6b82;
+  --soft: #6f7b92;
+  --accent: #1f8f7f;
+  --accent2: #0f72a0;
+  --accent3: #6b53c9;
+  --glow: rgba(31, 143, 127, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+/* REVEAL */
+.rv { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.rv.in { opacity: 1; transform: translateY(0); }
+.rv1 { transition-delay: 0.1s; }
+.rv2 { transition-delay: 0.2s; }
+.rv3 { transition-delay: 0.3s; }
+
+/* SECTION BASE */
+section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5%, 4rem); }
+
+.s-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+.s-tag::before { content: ''; width: 28px; height: 1px; background: var(--accent); opacity: 0.5; }
+
+.s-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+.s-sub { color: var(--soft); max-width: 500px; font-size: 1rem; line-height: 1.75; font-weight: 400; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+  transition: all 0.25s;
+  letter-spacing: 0.01em;
+}
+.btn-solid { background: var(--accent); color: #07090f; }
+.btn-solid:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 28px var(--glow); }
+.btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border2); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.btn-ghost { background: var(--card); color: var(--soft); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--text); border-color: var(--border2); }
+
+/* SOCIAL LINKS */
+.soc-link {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); text-decoration: none;
+  transition: all 0.2s;
+}
+.soc-link svg { width: 16px; height: 16px; fill: currentColor; }
+.soc-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* BACK TO TOP */
+#btt {
+  position: fixed; bottom: 1.75rem; right: 1.75rem;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--accent); color: #07090f;
+  border: none; cursor: pointer; font-size: 1.1rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: all 0.3s; z-index: 200;
+}
+#btt.show { opacity: 1; transform: translateY(0); pointer-events: all; }
+#btt:hover { transform: translateY(-3px); }
+
+/* LIGHT MODE INPUT FIX */
+[data-theme="light"] .fg input,
+[data-theme="light"] .fg textarea {
+  background: #fff;
+  color: #151b25;
+}

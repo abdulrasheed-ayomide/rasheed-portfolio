@@ -1,0 +1,7 @@
+#process { background: var(--bg2); }
+.proc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.15rem; margin-top: 2.5rem; }
+.proc { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.4rem; transition: all 0.3s; }
+.proc:hover { border-color: var(--accent); transform: translateY(-3px); }
+.proc-n { font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; color: rgba(92,255,230,.1); line-height: 1; margin-bottom: 0.4rem; }
+.proc-t { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; }
+.proc-d { font-size: 0.76rem; color: var(--muted); }

@@ -1,0 +1,7 @@
+#services { background: var(--bg); }
+.svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.15rem; margin-top: 2.5rem; }
+.svc { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.4rem; transition: all 0.3s; }
+.svc:hover { border-color: var(--accent); transform: translateY(-3px); }
+.svc-ico { font-size: 1.6rem; margin-bottom: 0.65rem; }
+.svc-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.svc-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }

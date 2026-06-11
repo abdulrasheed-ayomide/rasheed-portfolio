@@ -1,0 +1,13 @@
+#stats {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5%, 4rem);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(92,255,230,.03), rgba(77,142,255,.02));
+}
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; text-align: center; }
+.stat-n {
+  font-family: var(--font-head); font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700; letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-l { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; letter-spacing: 0.04em; }

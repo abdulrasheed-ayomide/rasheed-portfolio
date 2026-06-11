@@ -1,0 +1,34 @@
+#projects { background: var(--bg); }
+.proj-filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 2rem 0 2.5rem; }
+.fb {
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--muted); padding: 0.38rem 0.9rem; border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500; cursor: pointer;
+  font-family: var(--font-body); transition: all 0.2s;
+}
+.fb:hover, .fb.on { background: var(--accent); border-color: var(--accent); color: #07090f; }
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.pc {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r2); overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+}
+.pc:hover { transform: translateY(-6px); border-color: var(--border2); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+.proj-thumb { width: 100%; height: 220px; overflow: hidden; border-radius: 12px; }
+.proj-thumb img { width: 100%; height: 100%; object-fit:contain; display: block; transition: transform 0.3s ease; }
+.ptl { font-family: var(--font-head); font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; color: rgba(255,255,255,.12); }
+.proj-body { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+.ptag { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; padding: 0.18rem 0.55rem; border-radius: 6px; border: 1px solid var(--border2); color: var(--muted); }
+.proj-name { font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+.proj-desc { font-size: 0.84rem; color: var(--soft); line-height: 1.6; margin-bottom: 0.875rem; flex: 1; }
+.proj-feats { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+.pfeat { font-size: 0.7rem; background: rgba(255,255,255,.04); padding: 0.2rem 0.55rem; border-radius: 5px; color: var(--soft); }
+.plinks { display: flex; gap: 0.65rem; margin-top: auto; }
+.pl { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; text-decoration: none; padding: 0.4rem 0.9rem; border-radius: 100px; transition: all 0.2s; }
+.pl-live { background: var(--accent); color: #07090f; }
+.pl-live:hover { opacity: 0.85; }
+.pl-gh { border: 1px solid var(--border2); color: var(--muted); }
+.pl-gh:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 600px) { .proj-grid { grid-template-columns: 1fr; } }

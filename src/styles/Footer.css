@@ -1,0 +1,13 @@
+footer { background: var(--bg); border-top: 1px solid var(--border); padding: clamp(2rem,4vw,3rem) clamp(1.5rem,5%,4rem); }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+.foot-brand .logo { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.foot-brand .logo span { -webkit-text-fill-color: var(--accent); }
+.foot-brand p { font-size: 0.83rem; color: var(--muted); margin-top: 0.65rem; line-height: 1.65; max-width: 210px; }
+.foot-col h4 { font-family: var(--font-head); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.9rem; }
+.foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.foot-col ul li a { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.foot-col ul li a:hover { color: var(--accent); }
+.foot-btm { border-top: 1px solid var(--border); padding-top: 1.4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+.foot-btm p { font-size: 0.76rem; color: var(--muted); }
+@media (max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .foot-grid { grid-template-columns: 1fr; } footer { padding: 2rem 1.25rem; } }

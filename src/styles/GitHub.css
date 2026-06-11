@@ -1,0 +1,15 @@
+.gh-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: clamp(1.5rem,4vw,2.5rem); max-width: 680px; margin: 2.5rem auto 0; position: relative; overflow: hidden; }
+.gh-card::before { content: ''; position: absolute; top: -60%; left: -30%; width: 160%; height: 160%; background: radial-gradient(circle, rgba(92,255,230,.035) 0%, transparent 60%); pointer-events: none; }
+.gh-av { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: #07090f; }
+.gh-handle { font-family: var(--font-mono); color: var(--accent); font-size: 1rem; margin-bottom: 0.35rem; }
+.gh-bio { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.75rem; }
+.gh-stats { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 1.75rem; }
+.gh-stat .n { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--text); }
+.gh-stat .l { font-size: 0.7rem; color: var(--muted); margin-top: 0.1rem; }
+.contrib { display: grid; grid-template-columns: repeat(52,1fr); gap: 2px; margin: 1.25rem 0; overflow: hidden; }
+.cc { aspect-ratio: 1; border-radius: 2px; background: rgba(255,255,255,.04); }
+.cc.l1 { background: rgba(92,255,230,.18); }
+.cc.l2 { background: rgba(92,255,230,.38); }
+.cc.l3 { background: rgba(92,255,230,.6); }
+.cc.l4 { background: rgba(92,255,230,.85); }
+@media (max-width: 600px) { .gh-stats { gap: 1.5rem; } .contrib { grid-template-columns: repeat(26,1fr); } }

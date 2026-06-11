@@ -1,0 +1,20 @@
+#tech { background: var(--bg); }
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+.tech-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 1.5rem;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.tech-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+.tc-label {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+}
+.tc-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tc-chip {
+  background: rgba(255,255,255,.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.3rem 0.75rem;
+  font-size: 0.78rem; color: var(--soft); transition: all 0.2s;
+}
+.tc-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(92,255,230,.06); }

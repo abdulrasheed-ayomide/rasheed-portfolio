@@ -1,0 +1,22 @@
+#skills { background: var(--bg2); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+.sk-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 2rem; position: relative; overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.sk-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+}
+.sk-card:hover::after { transform: scaleX(1); }
+.sk-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+.sk-title { font-family: var(--font-head); font-weight: 600; font-size: 1rem; margin-bottom: 1.5rem; }
+.sk-rows { display: flex; flex-direction: column; gap: 1rem; }
+.sk-row { display: flex; flex-direction: column; gap: 0.35rem; }
+.sk-meta { display: flex; justify-content: space-between; align-items: center; }
+.sk-name { font-size: 0.82rem; color: var(--soft); }
+.sk-pct { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); }
+.sk-track { height: 3px; background: rgba(255,255,255,.06); border-radius: 2px; overflow: hidden; }
+.sk-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 1.3s ease; }

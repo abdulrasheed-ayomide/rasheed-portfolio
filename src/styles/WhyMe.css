@@ -1,0 +1,7 @@
+#why { background: var(--bg); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+.why-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: 1.75rem; transition: all 0.3s; }
+.why-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+.why-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+.why-title { font-family: var(--font-head); font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+.why-desc { font-size: 0.84rem; color: var(--soft); line-height: 1.65; }
