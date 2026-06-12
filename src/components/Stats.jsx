@@ -52,8 +52,11 @@ export default function Stats() {
                 <div className="stat-n">
                   <span className="cnt" data-t={s.value}>0</span>{s.suffix}
                 </div>
+              ) : (
+                <div className="stat-n">
+                  <span className="cnt" data-t={s.value}>0</span>{s.suffix}
+                </div>
               )
-              : <AnimatedNum value={s.value} suffix={s.suffix} loading={loading} />
             }
             <div className="stat-l">{s.label}</div>
           </div>
