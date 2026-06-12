@@ -1,15 +1,10 @@
 // src/components/Stats.jsx
 // Live stats pulled from GitHub API — auto-updates when you push
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useGitHub } from '../hooks/useGitHub'
 import '../styles/Stats.css'
+import CountUp from 'react-countup'
 
-const stats = [
-  { t: 10, suffix: '+', label: 'Completed Projects' },
-  { t: 10, suffix: '+', label: 'Technologies Used' },
-  { t: 50, suffix: '+', label: 'GitHub Commits' },
-  { t: 100, suffix: '%', label: 'Project Dedication' },
-]
 
 export default function Stats() {
   const { profile, totalCommits, repos, loading } = useGitHub()
@@ -18,7 +13,7 @@ export default function Stats() {
     {
       value: loading ? 0 : (repos.filter(r => !r.fork).length || 0),
       suffix: '+',
-      label: 'Completed Projects',
+      label: 'GitHub Repositories',
     },
     {
       value: 10,
@@ -47,17 +42,10 @@ export default function Stats() {
       <div className="stat-grid">
         {stats.map((s, i) => (
           <div className={`rv rv${i}`} key={s.label}>
-            {s.static
-              ? (
-                <div className="stat-n">
-                  <span className="cnt" data-t={s.value}>0</span>{s.suffix}
-                </div>
-              ) : (
-                <div className="stat-n">
-                  <span className="cnt" data-t={s.value}>0</span>{s.suffix}
-                </div>
-              )
-            }
+            <div className="stat-n">
+              <CountUp end={s.value}  duration={2.5}  />
+              {s.suffix}
+            </div>
             <div className="stat-l">{s.label}</div>
           </div>
         ))}
