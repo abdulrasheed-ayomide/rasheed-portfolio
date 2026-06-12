@@ -3,11 +3,24 @@
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   background: linear-gradient(135deg, rgba(92,255,230,.03), rgba(77,142,255,.02));
 }
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; text-align: center; }
+.stat-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem; text-align: center;
+}
 .stat-n {
   font-family: var(--font-head); font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 700; letter-spacing: -0.03em;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  display: block; min-height: 1.2em;
 }
 .stat-l { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; letter-spacing: 0.04em; }
+
+/* Skeleton for loading state */
+.stat-skel {
+  display: inline-block; width: 80px; height: 3rem;
+  background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%);
+  background-size: 200% 100%; border-radius: 6px;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }

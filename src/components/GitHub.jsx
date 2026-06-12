@@ -1,44 +1,224 @@
+// src/components/GitHub.jsx
 import { useEffect, useRef } from 'react'
+import { useGitHub } from '../hooks/useGitHub'
 import '../styles/GitHub.css'
 
-function ContribGrid() {
+// ── Contribution-style grid (visual only — GitHub's real
+//    contribution graph requires GraphQL which needs a token server.
+//    This renders a realistic activity pattern using your real commit data.) ──
+function ContribGrid({ totalCommits }) {
   const ref = useRef(null)
   useEffect(() => {
     if (!ref.current) return
     ref.current.innerHTML = ''
-    for (let i = 0; i < 52 * 7; i++) {
+    const cells = 52 * 7
+    // Use commit count to influence density
+    const density = Math.min(totalCommits / 500, 1) // scale 0-1
+    const activePct = 0.25 + density * 0.35         // 25%-60% active cells
+
+    for (let i = 0; i < cells; i++) {
       const d = document.createElement('div')
       d.className = 'cc'
       const r = Math.random()
-      if (r > 0.88) d.className += ' l4'
-      else if (r > 0.7) d.className += ' l3'
-      else if (r > 0.5) d.className += ' l2'
-      else if (r > 0.35) d.className += ' l1'
+      if (r < activePct) {
+        const lvl = Math.random()
+        if (lvl > 0.75) d.className += ' l4'
+        else if (lvl > 0.5) d.className += ' l3'
+        else if (lvl > 0.25) d.className += ' l2'
+        else d.className += ' l1'
+      }
       ref.current.appendChild(d)
     }
-  }, [])
+  }, [totalCommits])
   return <div className="contrib" id="cg" ref={ref} />
 }
 
-export default function GitHub() {
+// ── Skeleton loader ──
+function Skeleton({ w = '100%', h = '1rem', r = '6px', mb = '0' }) {
   return (
-    <section id="github" style={{ textAlign: 'center', background: 'var(--bg)' }}>
-      <div className="s-tag rv" style={{ justifyContent: 'center' }}>08. Open Source</div>
-      <h2 className="s-title rv rv1">GitHub Activity</h2>
-      <div className="gh-card rv rv2">
-        <div className="gh-av">RA</div>
-        <div className="gh-handle">@abdulrasheed-ayomide</div>
-        <div className="gh-bio">MERN Stack Developer · Building in public · Open to collaborations</div>
-        <div className="gh-stats">
-          <div className="gh-stat"><div className="n">10+</div><div className="l">Repositories</div></div>
-          <div className="gh-stat"><div className="n">50+</div><div className="l">Commits</div></div>
-          <div className="gh-stat"><div className="n">10+</div><div className="l">Projects</div></div>
+    <div className="gh-skel" style={{ width: w, height: h, borderRadius: r, marginBottom: mb }} />
+  )
+}
+
+// ── Single repo card ──
+function RepoCard({ repo }) {
+  const langColors = {
+    JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+    HTML: '#e34c26', CSS: '#563d7c', 'C++': '#f34b7d',
+    Java: '#b07219', Go: '#00ADD8', Rust: '#dea584',
+  }
+  const color = langColors[repo.language] || '#8b949e'
+
+  return (
+    <a className="repo-card" href={repo.html_url} target="_blank" rel="noopener noreferrer">
+      <div className="repo-top">
+        <span className="repo-icon">📁</span>
+        <span className="repo-name">{repo.name}</span>
+      </div>
+      <p className="repo-desc">{repo.description || 'No description provided.'}</p>
+      <div className="repo-meta">
+        {repo.language && (
+          <span className="repo-lang">
+            <span className="lang-dot" style={{ background: color }} />
+            {repo.language}
+          </span>
+        )}
+        {repo.stargazers_count > 0 && (
+          <span className="repo-stars">⭐ {repo.stargazers_count}</span>
+        )}
+        {repo.forks_count > 0 && (
+          <span className="repo-forks">🍴 {repo.forks_count}</span>
+        )}
+      </div>
+    </a>
+  )
+}
+
+export default function GitHub() {
+  const { profile, totalCommits, topRepos, languages, loading, error } = useGitHub()
+
+  // Top 5 languages
+  const topLangs = Object.entries(languages)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+  const totalLangRepos = topLangs.reduce((sum, [, n]) => sum + n, 0)
+
+  return (
+    <section id="github" style={{ background: 'var(--bg)' }}>
+      <div className="s-tag rv" style={{ justifyContent: 'center', textAlign: 'center' }}>
+        08. Open Source
+      </div>
+      <h2 className="s-title rv rv1" style={{ textAlign: 'center' }}>GitHub Activity</h2>
+      <p className="s-sub rv rv2" style={{ textAlign: 'center', margin: '0 auto 2.5rem' }}>
+        Live data pulled directly from the GitHub API — updates every time you push.
+      </p>
+
+      {/* ── ERROR STATE ── */}
+      {error && (
+        <div className="gh-error rv">
+          <span>⚠️</span>
+          <span>Couldn't load GitHub data: {error}.<br />Check your VITE_GITHUB_TOKEN in .env</span>
         </div>
-        <ContribGrid />
-        <a href="https://github.com/abdulrasheed-ayomide" target="_blank" rel="noopener noreferrer"
-          className="btn btn-outline" style={{ margin: '0 auto', display: 'inline-flex' }}>
+      )}
+
+      {/* ── PROFILE CARD ── */}
+      <div className="gh-card rv rv2">
+        {loading ? (
+          <div className="gh-profile-row">
+            <Skeleton w="72px" h="72px" r="50%" />
+            <div style={{ flex: 1 }}>
+              <Skeleton w="140px" h="1.1rem" mb="0.5rem" />
+              <Skeleton w="200px" h="0.85rem" />
+            </div>
+          </div>
+        ) : profile && (
+          <div className="gh-profile-row">
+            <img
+              src={profile.avatar_url}
+              alt={profile.name || profile.login}
+              className="gh-av-img"
+            />
+            <div className="gh-profile-info">
+              <div className="gh-name">{profile.name || profile.login}</div>
+              <div className="gh-handle">@{profile.login}</div>
+              <div className="gh-bio">{profile.bio || 'MERN Stack Developer · Building in public'}</div>
+            </div>
+          </div>
+        )}
+
+        {/* ── LIVE STATS ── */}
+        <div className="gh-stats">
+          <div className="gh-stat">
+            <div className="n">
+              {loading ? <Skeleton w="40px" h="1.4rem" /> : `${profile?.public_repos ?? '—'}`}
+            </div>
+            <div className="l">Repositories</div>
+          </div>
+          <div className="gh-stat">
+            <div className="n">
+              {loading ? <Skeleton w="40px" h="1.4rem" /> : `${totalCommits > 0 ? totalCommits + '+' : '—'}`}
+            </div>
+            <div className="l">Commits</div>
+          </div>
+          <div className="gh-stat">
+            <div className="n">
+              {loading ? <Skeleton w="40px" h="1.4rem" /> : `${profile?.followers ?? '—'}`}
+            </div>
+            <div className="l">Followers</div>
+          </div>
+          <div className="gh-stat">
+            <div className="n">
+              {loading ? <Skeleton w="40px" h="1.4rem" /> : `${profile?.following ?? '—'}`}
+            </div>
+            <div className="l">Following</div>
+          </div>
+        </div>
+
+        {/* ── CONTRIBUTION GRID ── */}
+        <div className="contrib-label">Contribution Activity</div>
+        <ContribGrid totalCommits={totalCommits} />
+
+        {/* ── LANGUAGE BREAKDOWN ── */}
+        {!loading && topLangs.length > 0 && (
+          <div className="lang-breakdown rv">
+            <div className="lang-title">Top Languages</div>
+            <div className="lang-bar-wrap">
+              {topLangs.map(([lang, count]) => {
+                const pct = ((count / totalLangRepos) * 100).toFixed(1)
+                const langColors = {
+                  JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+                  HTML: '#e34c26', CSS: '#563d7c', Java: '#b07219',
+                }
+                return (
+                  <div key={lang} className="lang-seg"
+                    style={{ width: pct + '%', background: langColors[lang] || 'var(--accent)' }}
+                    title={`${lang}: ${pct}%`}
+                  />
+                )
+              })}
+            </div>
+            <div className="lang-legend">
+              {topLangs.map(([lang]) => {
+                const langColors = {
+                  JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+                  HTML: '#e34c26', CSS: '#563d7c', Java: '#b07219',
+                }
+                return (
+                  <span key={lang} className="lang-item">
+                    <span className="lang-dot" style={{ background: langColors[lang] || 'var(--accent)' }} />
+                    {lang}
+                  </span>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        <a
+          href={`https://github.com/${profile?.login || 'abdulrasheed-ayomide'}`}
+          target="_blank" rel="noopener noreferrer"
+          className="btn btn-outline"
+          style={{ margin: '0 auto', display: 'inline-flex' }}
+        >
           View GitHub Profile ↗
         </a>
+      </div>
+
+      {/* ── TOP REPOSITORIES ── */}
+      <div className="repos-section rv">
+        <div className="repos-title">Pinned Repositories</div>
+        <div className="repos-grid">
+          {loading
+            ? Array(6).fill(0).map((_, i) => (
+                <div key={i} className="repo-card">
+                  <Skeleton w="60%" h="1rem" mb="0.5rem" />
+                  <Skeleton w="90%" h="0.8rem" mb="0.3rem" />
+                  <Skeleton w="70%" h="0.8rem" />
+                </div>
+              ))
+            : topRepos.map(repo => <RepoCard key={repo.id} repo={repo} />)
+          }
+        </div>
       </div>
     </section>
   )
