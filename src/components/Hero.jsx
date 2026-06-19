@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import '../styles/Hero.css'
-import heroImg from '../assets/profile.jpg' // Replace with actual path to your background image
+import heroimg from '../assets/profile.jpg' // Replace with actual path to your background image
 
 const WORDS = ['MERN Stack Developer', 'React Developer', 'Full Stack Engineer', 'Backend Developer', 'Problem Solver']
 
@@ -107,7 +107,7 @@ export default function Hero() {
               ━━━━━━━━━━━━━━━━━━━━━━━━━━
             */}
             <div className="photo-placeholder">
-              <img src={heroImg} alt="Rasheed Ayomide" />
+              <img src={heroimg} alt="Rasheed Ayomide" />
               {/* <div className="ph-init">RA</div> */}
               {/* <div className="ph-hint">Add photo.jpg<br />to /public folder</div> */}
             </div>

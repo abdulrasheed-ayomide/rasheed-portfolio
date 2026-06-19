@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import '../styles/Projects.css';
-import primelaneImg from '../assets/primelane.png';
-import audiomackImg from '../assets/audiomack.png';
-import studentInfoImg from '../assets/studentinfo.png';
-import plumbingImg from '../assets/plumbing.png';
-import rechargeImg from '../assets/rechargeCard.png';
-// import portfolioImg from '../public/portfolio.png';
+import primelaneimg from '../assets/primelane.png';
+import audiomackimg from '../assets/audiomack.png';
+import studentinfoImg from '../assets/studentinfo.png';
+import plumbingimg from '../assets/plumbing.png';
+import rechargeimg from '../assets/rechargeCard.png';
+// import portfolioimg from '../assets/portfolio.png';
 
 const projects = [
   {
     id: 'pl', cat: 'frontend', letters: 'PL',
-    image: primelaneImg,
+    image: primelaneimg,
     name: 'PrimeLane E-commerce',
     desc: 'Modern e-commerce site with polished UI, product browsing, add-to-cart, and checkout flow built using Tailwind CSS, JavaScript, and Firebase.',
     tags: ['Tailwind CSS', 'JavaScript', 'Firebase'],
@@ -20,7 +20,7 @@ const projects = [
   },
   {
     id: 'ac', cat: 'frontend', letters: 'AC',
-    image: audiomackImg,
+    image: audiomackimg,
     name: 'Audiomack Clone',
     desc: 'Frontend music experience built with Tailwind CSS, JavaScript, and HTML for a polished audio browsing interface.',
     tags: ['Tailwind CSS', 'JavaScript', 'html'],
@@ -30,7 +30,7 @@ const projects = [
   },
   {
     id: 'siu', cat: 'frontend', letters: 'SIU',
-    image: studentInfoImg,
+    image: studentinfoimg,
     name: 'Student Information UI',
     desc: 'Frontend student information dashboard built with HTML, JavaScript, and CSS, designed for adding and viewing student records.',
     tags: ['HTML', 'CSS', 'JavaScript'],
@@ -40,7 +40,7 @@ const projects = [
   },
   {
     id: 'ap', cat: 'frontend', letters: 'AP',
-    image: plumbingImg,
+    image: plumbingimg,
     name: 'Adeshina Plumbing',
     desc: 'Modern plumbing service landing page built with Tailwind CSS, JavaScript, and WhatsApp contact integration for fast customer booking.',
     tags: ['Tailwind CSS', 'JavaScript', 'WhatsApp API'],
@@ -50,7 +50,7 @@ const projects = [
   },
   {
     id: 'rcg', cat: 'frontend', letters: 'RCG',
-    image: rechargeImg,
+    image: rechargeimg,
     name: 'Recharge Card Generator',
     desc: 'Frontend airtime pin generator with network and amount selection, pin creation, save/load support, and local storage persistence.',
     tags: ['Tailwind CSS', 'JavaScript', 'Local Storage'],
@@ -60,7 +60,7 @@ const projects = [
   },
   {
     id: 'pw', cat: 'backend', letters: 'PW',
-    // image: portfolioImg,
+    // image: portfolioimg,
     name: 'Portfolio Website',
     desc: 'This very portfolio — fully responsive, performance-optimized with modern animations.',
     tags: ['React', 'vite'],
