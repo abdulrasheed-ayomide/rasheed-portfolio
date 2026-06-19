@@ -1,5 +1,5 @@
 import '../styles/About.css'
-import aboutprofile from '../public/profile1.jpg' // Replace with actual path to your photo
+import aboutprofile from '../assets/profile1.jpg' // Replace with actual path to your photo
 
 const strengths = ['Frontend Development','Backend Development','Database Design','API Development','Authentication & Security','Performance Optimization','Problem Solving','Team Collaboration']
 

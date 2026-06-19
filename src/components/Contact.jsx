@@ -19,7 +19,7 @@ export default function Contact() {
     setSending(true)
     setMsg({ text: 'Sending...', type: '' })
     try {
-      const res = await fetch('https://formspree.io/f/mkoajall', {
+      const res = await fetch('http://localhost:4000/api/contact', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: fn, email: fe, subject: fs, message: fm }),

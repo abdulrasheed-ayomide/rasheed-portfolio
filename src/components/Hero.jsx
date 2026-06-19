@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import '../styles/Hero.css'
-import heroImg from '../public/profile.jpg' // Replace with actual path to your background image
+import heroImg from '../assets/profile.jpg' // Replace with actual path to your background image
 
 const WORDS = ['MERN Stack Developer', 'React Developer', 'Full Stack Engineer', 'Backend Developer', 'Problem Solver']
 

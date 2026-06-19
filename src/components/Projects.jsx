@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import '../styles/Projects.css';
-import primelaneImg from '../public/primelane.png';
-import audiomackImg from '../public/audiomack.png';
-import studentInfoImg from '../public/studentinfo.png';
-import plumbingImg from '../public/plumbing.png';
-import rechargeImg from '../public/rechargeCard.png';
+import primelaneImg from '../assets/primelane.png';
+import audiomackImg from '../assets/audiomack.png';
+import studentInfoImg from '../assets/studentinfo.png';
+import plumbingImg from '../assets/plumbing.png';
+import rechargeImg from '../assets/rechargeCard.png';
 // import portfolioImg from '../public/portfolio.png';
 
 const projects = [
