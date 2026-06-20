@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../styles/Projects.css';
 import primelaneimg from '../assets/primelane.png';
 import audiomackimg from '../assets/audiomack.png';
-import studentinfoImg from '../assets/studentinfo.png';
+import studentinfoimg from '../assets/studentinfo.png';
 import plumbingimg from '../assets/plumbing.png';
 import rechargeimg from '../assets/rechargecard.png';
 // import portfolioimg from '../assets/portfolio.png';
