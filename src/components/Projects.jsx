@@ -4,7 +4,7 @@ import primelaneimg from '../assets/primelane.png';
 import audiomackimg from '../assets/audiomack.png';
 import studentinfoImg from '../assets/studentinfo.png';
 import plumbingimg from '../assets/plumbing.png';
-import rechargeimg from '../assets/rechargeCard.png';
+import rechargeimg from '../assets/rechargecard.png';
 // import portfolioimg from '../assets/portfolio.png';
 
 const projects = [
