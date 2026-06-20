@@ -97,7 +97,7 @@ export default function GitHub() {
       {error && (
         <div className="gh-error rv">
           <span>⚠️</span>
-          <span>Couldn't load GitHub data: {error}.<br />Check your VITE_GITHUB_TOKEN in .env</span>
+          <span>Couldn't load GitHub data: {error}.<br />kindly check your GitHub token and try again.</span>
         </div>
       )}
 
