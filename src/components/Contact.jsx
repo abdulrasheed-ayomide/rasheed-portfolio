@@ -19,7 +19,7 @@ export default function Contact() {
     setSending(true)
     setMsg({ text: 'Sending...', type: '' })
     try {
-      const res = await fetch('http://localhost:4000/api/contact', {
+      const res = await fetch('https://rasheed-portfolio-backend.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: fn, email: fe, subject: fs, message: fm }),
