@@ -90,15 +90,6 @@ export default function Hero() {
               >
                 ↓ Download CV
               </a>
-
-              <a
-                href="/Rasheed_Abdulwaheed_Backend_Engineer_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline"
-              >
-                👀 View CV
-              </a>
             </div>
           </div>
 
