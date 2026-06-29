@@ -38,8 +38,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="foot-btm">
-        <p>© {new Date().getFullYear()} Rasheed Ayomide. All Rights Reserved.</p>
-        <p>Designed & Developed by Rasheed Ayomide.</p>
+        <p>© {new Date().getFullYear()} Rasheed Abdulwaheed. All Rights Reserved.</p>
+        <p>Designed & Developed by Rasheed Abdulwaheed.</p>
       </div>
     </footer>
   )
