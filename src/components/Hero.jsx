@@ -59,7 +59,7 @@ export default function Hero() {
 
           <h1 className="hname rv rv1">
             <span className="line1">Rasheed</span>
-            <span className="grad">Abdulwaheed.</span>
+            <span className="grad">Ayomide.</span>
           </h1>
 
           <div className="hero-role rv rv2">
