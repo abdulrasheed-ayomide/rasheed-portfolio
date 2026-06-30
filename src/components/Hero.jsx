@@ -84,7 +84,7 @@ export default function Hero() {
             </a>
             <div className="hero-buttons">
               <a
-                href="/Rasheed_Abdulwaheed_Backend_Engineer_CV.pdf"
+                href="/Abdulwaheed_Rasheed_Backend_Engineer.pdf"
                 download
                 className="btn btn-solid"
               >
@@ -112,7 +112,7 @@ export default function Hero() {
               ━━━━━━━━━━━━━━━━━━━━━━━━━━
             */}
             <div className="photo-placeholder">
-              <img src={heroimg} alt="Rasheed Abdulwaheed" />
+              <img src={heroimg} alt="Abdulwaheed Rasheed" />
               {/* <div className="ph-init">RA</div> */}
               {/* <div className="ph-hint">Add photo.jpg<br />to /public folder</div> */}
             </div>
