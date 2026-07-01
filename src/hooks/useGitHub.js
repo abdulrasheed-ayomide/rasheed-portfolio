@@ -1,5 +1,19 @@
 import { useState, useEffect } from 'react';
 
+const GITHUB_USERNAME = import.meta.env.VITE_GITHUB_USERNAME || 'abdulrasheed-ayomide';
+
+function buildLanguageBreakdown(repos) {
+  const languages = {};
+
+  repos
+    .filter(repo => !repo.fork && repo.language)
+    .forEach(repo => {
+      languages[repo.language] = (languages[repo.language] || 0) + 1;
+    });
+
+  return languages;
+}
+
 export function useGitHub() {
   const [data, setData] = useState({
     profile: null,
@@ -16,23 +30,31 @@ export function useGitHub() {
 
     async function load() {
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/github`
-        );
+        const [profileRes, reposRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
+          fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`),
+        ]);
 
-        if (!res.ok) {
+        if (!profileRes.ok || !reposRes.ok) {
           throw new Error('Failed to fetch GitHub data');
         }
 
-        const githubData = await res.json();
+        const profile = await profileRes.json();
+        const repos = await reposRes.json();
+        const publicRepos = (repos || []).filter(repo => !repo.fork);
+        const topRepos = [...publicRepos]
+          .sort((a, b) => {
+            return (b.stargazers_count || 0) - (a.stargazers_count || 0) || (b.forks_count || 0) - (a.forks_count || 0);
+          })
+          .slice(0, 6);
 
         if (!cancelled) {
           setData({
-            profile: githubData.profile,
-            repos: githubData.repos,
-            totalCommits: githubData.totalCommits || 0,
-            topRepos: githubData.topRepos || [],
-            languages: githubData.languages || {},
+            profile,
+            repos: publicRepos,
+            totalCommits: Math.max(profile.public_repos || 0, publicRepos.length, 1),
+            topRepos,
+            languages: buildLanguageBreakdown(publicRepos),
             loading: false,
             error: null,
           });

@@ -1,20 +1,19 @@
 // src/components/GitHub.jsx
 import { useEffect, useRef } from 'react'
-import { useGitHub } from '../hooks/useGitHub'
 import '../styles/GitHub.css'
+import { useGitHub } from '../hooks/useGitHub'
 
-// ── Contribution-style grid (visual only — GitHub's real
-//    contribution graph requires GraphQL which needs a token server.
-//    This renders a realistic activity pattern using your real commit data.) ──
+// ── Contribution-style grid (visual only) ──
 function ContribGrid({ totalCommits }) {
   const ref = useRef(null)
+
   useEffect(() => {
     if (!ref.current) return
+
     ref.current.innerHTML = ''
     const cells = 52 * 7
-    // Use commit count to influence density
-    const density = Math.min(totalCommits / 500, 1) // scale 0-1
-    const activePct = 0.25 + density * 0.35         // 25%-60% active cells
+    const density = Math.min(totalCommits / 80, 1)
+    const activePct = 0.2 + density * 0.4
 
     for (let i = 0; i < cells; i++) {
       const d = document.createElement('div')
@@ -30,6 +29,7 @@ function ContribGrid({ totalCommits }) {
       ref.current.appendChild(d)
     }
   }, [totalCommits])
+
   return <div className="contrib" id="cg" ref={ref} />
 }
 
@@ -40,42 +40,10 @@ function Skeleton({ w = '100%', h = '1rem', r = '6px', mb = '0' }) {
   )
 }
 
-// ── Single repo card ──
-function RepoCard({ repo }) {
-  const langColors = {
-    JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
-    HTML: '#e34c26', CSS: '#563d7c', 'C++': '#f34b7d',
-    Java: '#b07219', Go: '#00ADD8', Rust: '#dea584',
-  }
-  const color = langColors[repo.language] || '#8b949e'
-
-  return (
-    <a className="repo-card" href={repo.html_url} target="_blank" rel="noopener noreferrer">
-      <div className="repo-top">
-        <span className="repo-icon">📁</span>
-        <span className="repo-name">{repo.name}</span>
-      </div>
-      <p className="repo-desc">{repo.description || 'No description provided.'}</p>
-      <div className="repo-meta">
-        {repo.language && (
-          <span className="repo-lang">
-            <span className="lang-dot" style={{ background: color }} />
-            {repo.language}
-          </span>
-        )}
-        {repo.stargazers_count > 0 && (
-          <span className="repo-stars">⭐ {repo.stargazers_count}</span>
-        )}
-        {repo.forks_count > 0 && (
-          <span className="repo-forks">🍴 {repo.forks_count}</span>
-        )}
-      </div>
-    </a>
-  )
-}
-
 export default function GitHub() {
-  const { profile, totalCommits, topRepos, languages, loading, error } = useGitHub()
+  const { profile, repos, totalCommits, languages, loading, error } = useGitHub()
+
+  const totalStars = (repos || []).reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0)
 
   // Top 5 languages
   const topLangs = Object.entries(languages)
@@ -88,9 +56,9 @@ export default function GitHub() {
       <div className="s-tag rv" style={{ justifyContent: 'center', textAlign: 'center' }}>
         08. Open Source
       </div>
-      <h2 className="s-title rv rv1" style={{ textAlign: 'center' }}>GitHub Activity</h2>
+      <h2 className="s-title rv rv1" style={{ textAlign: 'center' }}>GitHub Profile</h2>
       <p className="s-sub rv rv2" style={{ textAlign: 'center', margin: '0 auto 2.5rem' }}>
-        Live data pulled directly from the GitHub API — updates every time you push.
+        A polished snapshot of your public GitHub presence, updated from the GitHub API.
       </p>
 
       {/* ── ERROR STATE ── */}
@@ -136,9 +104,9 @@ export default function GitHub() {
           </div>
           <div className="gh-stat">
             <div className="n">
-              {loading ? <Skeleton w="40px" h="1.4rem" /> : `${totalCommits > 0 ? totalCommits + '+' : '—'}`}
+              {loading ? <Skeleton w="40px" h="1.4rem" /> : `${totalStars > 0 ? totalStars : '—'}`}
             </div>
-            <div className="l">Commits</div>
+            <div className="l">Stars</div>
           </div>
           <div className="gh-stat">
             <div className="n">
@@ -204,22 +172,6 @@ export default function GitHub() {
         </a>
       </div>
 
-      {/* ── TOP REPOSITORIES ── */}
-      <div className="repos-section rv">
-        <div className="repos-title">Pinned Repositories</div>
-        <div className="repos-grid">
-          {loading
-            ? Array(6).fill(0).map((_, i) => (
-                <div key={i} className="repo-card">
-                  <Skeleton w="60%" h="1rem" mb="0.5rem" />
-                  <Skeleton w="90%" h="0.8rem" mb="0.3rem" />
-                  <Skeleton w="70%" h="0.8rem" />
-                </div>
-              ))
-            : topRepos.map(repo => <RepoCard key={repo.id} repo={repo} />)
-          }
-        </div>
-      </div>
     </section>
   )
 }

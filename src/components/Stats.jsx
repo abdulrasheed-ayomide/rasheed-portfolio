@@ -1,13 +1,14 @@
 // src/components/Stats.jsx
 // Live stats pulled from GitHub API — auto-updates when you push
-import { useRef } from 'react'
 import { useGitHub } from '../hooks/useGitHub'
 import '../styles/Stats.css'
 import CountUp from 'react-countup'
 
 
 export default function Stats() {
-  const { profile, totalCommits, repos, loading } = useGitHub()
+  const { profile, repos, loading } = useGitHub()
+
+  const totalStars = (repos || []).reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0)
 
   const stats = [
     {
@@ -16,26 +17,21 @@ export default function Stats() {
       label: 'GitHub Repositories',
     },
     {
-      value: 10,
+      value: loading ? 0 : totalStars,
       suffix: '+',
-      label: 'Technologies Used',
-      static: true,
+      label: 'GitHub Stars',
     },
     {
-      value: loading ? 0 : totalCommits,
+      value: loading ? 0 : (profile?.followers || 0),
       suffix: '+',
-      label: 'GitHub Commits',
+      label: 'Followers',
     },
     {
-      value: 100,
-      suffix: '%',
-      label: 'Project Dedication',
-      static: true,
+      value: loading ? 0 : (profile?.following || 0),
+      suffix: '+',
+      label: 'Following',
     },
   ]
-
-  // Trigger count-up for static stats too via rv observer
-  const staticRefs = useRef([])
 
   return (
     <section id="stats">
