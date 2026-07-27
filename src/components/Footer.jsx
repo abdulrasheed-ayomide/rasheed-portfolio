@@ -32,14 +32,13 @@ export default function Footer() {
           <ul>
             <li><a href="https://github.com/abdulrasheed-ayomide" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/rasheed-ayomide-3a8453395" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://x.com/RAyomide46156" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
             <li><a href="#contact" onClick={nav('#contact')}>Contact Me</a></li>
           </ul>
         </div>
       </div>
       <div className="foot-btm">
-        <p>© {new Date().getFullYear()} Abdulwaheed Rasheed Ayomide. All Rights Reserved.</p>
-        <p>Designed & Developed by Abdulwaheed Rasheed Ayomide.</p>
+        <p>© {new Date().getFullYear()} Rasheed Ayomide. All Rights Reserved.</p>
+        <p>Designed & Developed by Rasheed Ayomide.</p>
       </div>
     </footer>
   )

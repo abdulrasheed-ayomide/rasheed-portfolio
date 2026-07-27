@@ -78,10 +78,6 @@ export default function Hero() {
               onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}>
               View Projects
             </a>
-            <a href="#contact" className="btn btn-outline"
-              onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
-              Hire Me
-            </a>
             <div className="hero-buttons">
               <a
                 href="/Abdulwaheed_Rasheed_Backend_Engineer.pdf"
@@ -91,30 +87,25 @@ export default function Hero() {
                 ↓ Download CV
               </a>
             </div>
+            <a href="#contact" className="btn btn-outline"
+              onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
+              Hire Me
+            </a>
           </div>
 
           <div className="hero-socials rv rv3">
             <a href="https://github.com/abdulrasheed-ayomide" target="_blank" rel="noopener noreferrer" className="soc-link" aria-label="GitHub">{GH}</a>
             <a href="https://www.linkedin.com/in/rasheed-ayomide-3a8453395" target="_blank" rel="noopener noreferrer" className="soc-link" aria-label="LinkedIn">{LI}</a>
-            <a href="https://x.com/RAyomide46156" target="_blank" rel="noopener noreferrer" className="soc-link" aria-label="Twitter">{TW}</a>
           </div>
         </div>
 
         {/* PHOTO PANEL */}
         <div className="hero-photo rv">
           <div className="photo-outer">
-            {/*
-              ━━━━━━━━━━━━━━━━━━━━━━━━━━
-              TO ADD YOUR PHOTO:
-              1. Put your image in /public/photo.jpg
-              2. Replace the placeholder below with:
-                 <img src="/rasheed-portfolio/photo.jpg" alt="Rasheed Ayomide" />
-              ━━━━━━━━━━━━━━━━━━━━━━━━━━
-            */}
+        
             <div className="photo-placeholder">
               <img src={heroimg} alt="Abdulwaheed Rasheed" />
-              {/* <div className="ph-init">RA</div> */}
-              {/* <div className="ph-hint">Add photo.jpg<br />to /public folder</div> */}
+             
             </div>
           </div>
           <div className="photo-ring" />
@@ -126,10 +117,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="scroll-hint">
-        <div className="sh-line" />
-        <span>SCROLL</span>
-      </div>
     </section>
   )
 }

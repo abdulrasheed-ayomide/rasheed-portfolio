@@ -57,8 +57,8 @@ export default function Contact() {
         </div>
         <div className="cform rv rv2">
           <div className="frow">
-            <div className="fg"><label>Full Name</label><input id="fn" type="text" placeholder="John Doe" value={form.fn} onChange={set('fn')} /></div>
-            <div className="fg"><label>Email Address</label><input id="fe" type="email" placeholder="john@example.com" value={form.fe} onChange={set('fe')} /></div>
+            <div className="fg"><label>Full Name</label><input id="fn" type="text" placeholder="Full name" value={form.fn} onChange={set('fn')} /></div>
+            <div className="fg"><label>Email Address</label><input id="fe" type="email" placeholder="Your email" value={form.fe} onChange={set('fe')} /></div>
           </div>
           <div className="fg"><label>Subject</label><input id="fs" type="text" placeholder="Project Inquiry" value={form.fs} onChange={set('fs')} /></div>
           <div className="fg"><label>Message</label><textarea id="fm" placeholder="Tell me about your project..." value={form.fm} onChange={set('fm')} /></div>

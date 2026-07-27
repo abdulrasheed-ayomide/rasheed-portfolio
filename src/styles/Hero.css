@@ -113,16 +113,6 @@ h1.hname .grad {
   font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em;
 }
 
-/* SCROLL HINT */
-.scroll-hint {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-  color: var(--muted); font-size: 0.62rem; letter-spacing: 0.1em; font-family: var(--font-mono);
-  animation: sfloat 3s ease-in-out infinite;
-}
-.sh-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--accent), transparent); }
-@keyframes sfloat { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-6px)} }
-
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .hero-wrap { grid-template-columns: 1fr; }
