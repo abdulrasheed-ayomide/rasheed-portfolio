@@ -80,7 +80,7 @@ export default function Hero() {
             </a>
             <div className="hero-buttons">
               <a
-                href="/Abdulwaheed_Rasheed_Backend_Engineer.pdf"
+                href="/Abdulwaheed_Rasheed_cv.pdf"
                 download
                 className="btn btn-solid"
               >
